@@ -1,0 +1,125 @@
+{
+    "listItems": [
+        {
+            "id": 1,
+            "listId": 1,
+            "itemId": 1,
+            "userId": 1,
+            "status": "low",
+            "dateAdded": "3/17/20"
+        },
+        {
+            "id": 2,
+            "listId": 1,
+            "itemId": 2,
+            "userId": 1,
+            "status": "out",
+            "dateAdded": "3/17/20"
+        },
+        {
+            "id": 3,
+            "listId": 1,
+            "itemId": 3,
+            "userId": 1,
+            "status": "low",
+            "dateAdded": "3/17/20"
+        }
+    ],
+    "lists": [
+        {
+            "id": 1,
+            "name": "Nada"
+        }
+    ],
+    "items": [
+        {
+            "id": 1,
+            "name": "avocados",
+            "supplierId": 1,
+            "spanish": "los aguacates"
+        },
+        {
+            "id": 2,
+            "name": "limes",
+            "supplierId": 1,
+            "spanish": "las limas"
+        },
+        {
+            "id": 3,
+            "name": "chicken",
+            "supplierId": 2,
+            "spanish": "los pollos"
+        }
+    ],
+    "users": [
+        {
+            "id": 1,
+            "username": "bnilsen",
+            "email": "bn@gmail.com",
+            "firstName": "Bryan",
+            "lastName": "Nilsen",
+            "isAdmin": true
+        },
+        {
+            "id": 2,
+            "username": "acollins",
+            "email": "ac@gmail.com",
+            "firstName": "Andy",
+            "lastName": "Collins",
+            "isAdmin": false
+        },
+        {
+            "id": 3,
+            "username": "knorris",
+            "email": "kn@gmail.com",
+            "firstName": "Kristen",
+            "lastName": "Norris",
+            "isAdmin": false
+        }
+    ],
+    "suppliers": [
+        {
+            "id": 1,
+            "name": "Produce Supplier",
+            "contact": "Bob Jones",
+            "email": "bjones@producesupplier.com"
+        },
+        {
+            "id": 2,
+            "name": "Meat Supplier",
+            "contact": "Timmy Smith",
+            "email": "tsmith@meatsupplier.com"
+        }
+    ],
+    "orders": [
+        {
+            "id": 1,
+            "supplierId": 1,
+            "isReceived": false,
+            "orderDate": "03/17/20"
+        },
+        {
+            "id": 2,
+            "supplierId": 2,
+            "isReceived": false,
+            "orderDate": "03/18/20"
+        }
+    ],
+    "orderItems": [
+        {
+            "id": 1,
+            "itemId": 1,
+            "orderId": 1
+        },
+        {
+            "id": 2,
+            "itemId": 2,
+            "orderId": 1
+        },
+        {
+            "id": 3,
+            "itemId": 3,
+            "orderId": 2
+        }
+    ]
+}
