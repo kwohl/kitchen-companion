@@ -1,4 +1,4 @@
-const baseURL = "http://localhost:3000/"
+const baseURL = "http://localhost:5002"
 
 export default {
     post(newListItem) {
