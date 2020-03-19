@@ -4,6 +4,7 @@ import ListManager from '../../modules/ListManager'
 
 const List = (props) => {
     const [listItems, setListItems] = useState([]);
+    const [items, setItems] = useState([]);
 
     const getListItems = () => {
         return ListManager.getAll().then(response => {
@@ -12,8 +13,13 @@ const List = (props) => {
     };
 
     useEffect(() => {
-        getListItems();
-        console.log(listItems)
+        getListItems()
+        // ListManager.getItemsWithListItems(props.match.params.itemId)
+        //     .then(result => {
+        //         setListItems(result);
+        //         setItems(result.items);
+        //         console.log(listItems)
+        //     })
     }, []);
 
     return (
