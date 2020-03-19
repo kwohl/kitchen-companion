@@ -34,13 +34,12 @@ const constructNewListItem = evt => {
                         id="itemId"
                         placeholder="Item"
                         />
-                        <input 
-                        type="text" 
+                        <select 
                         required 
-                        onChange={handleFieldChange} 
-                        id="status"
-                        placeholder="Low or Out?"
-                        />
+                        onChange={handleFieldChange} >
+                            <option value="low">Low</option>
+                            <option value="out">Out</option>
+                        </select>
                     </div>
                     <div className="addListItemButton">
                         <button disabled={isLoading} onClick={constructNewListItem}>
