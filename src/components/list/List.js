@@ -16,8 +16,8 @@ const List = (props) => {
         getListItems()
         // ListManager.getItemsWithListItems(props.match.params.itemId)
         //     .then(result => {
-        //         setListItems(result);
-        //         setItems(result.items);
+        //         setItems(result);
+        //         setListItems(result.listItems);
         //         console.log(listItems)
         //     })
     }, []);
