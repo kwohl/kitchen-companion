@@ -3,6 +3,9 @@ import { withRouter, Link } from 'react-router-dom';
 import './Nav.css'
 
 const NavBar = props => {
+    const clearUser = () => {
+    sessionStorage.clear();
+    };
 
     return (
     <>
@@ -40,7 +43,12 @@ const NavBar = props => {
             </Link>
           </li>
           <li>
-            <Link className="nav-link" to="/ ">
+            <Link className="nav-link" to="/login">
+              Log In
+            </Link>
+          </li>
+          <li>
+            <Link className="nav-link" onClick={clearUser} to="/login">
               Log Out
             </Link>
           </li>
