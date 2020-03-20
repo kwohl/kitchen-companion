@@ -3,6 +3,8 @@ import React from "react";
 import Home from './home/Home'
 import List from './list/List'
 import Login from './auth/Login'
+import Suppliers from './suppliers/Suppliers'
+import SupplierEdit from './suppliers/SupplierEdit'
 
 const ApplicationView = (props) => {
     return (
@@ -15,6 +17,12 @@ const ApplicationView = (props) => {
         }}/>
         <Route path="/login" render={props => {
             return <Login { ...props }/> 
+        }}/>
+        <Route exact path="/suppliers" render={props => {
+            return <Suppliers { ...props }/> 
+        }}/>
+        <Route path="/suppliers/:supplierId(\d+)/edit" render={props => {
+            return <SupplierEdit { ...props }/> 
         }}/>
         </>
     );
