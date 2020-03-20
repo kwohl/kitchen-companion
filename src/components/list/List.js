@@ -11,6 +11,11 @@ const List = (props) => {
         });
     };
 
+    const deleteListItem = (id) => {
+        ListManager.deleteListItem(id)
+            .then(() => ListManager.getAll().then(setListItems))
+    };
+
     useEffect(() => {
         getListItems()
     }, []);
@@ -23,6 +28,7 @@ const List = (props) => {
                 <ListItemCard
                     key={listItem.id}
                     listItem={listItem}
+                    deleteListItem={deleteListItem}
                     { ...props }
                 />
                 )}

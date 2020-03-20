@@ -8,5 +8,10 @@ export default {
     getItemsWithListItems(id) {
         return fetch(`${baseURL}/items/${id}?_embed=listItems`)
             .then(response => response.json())
+    },
+    deleteListItem(id) {
+        return fetch(`${baseURL}/listItems/${id}`, {
+            method: "DELETE"
+        }).then(response => response.json())
     }
 }
