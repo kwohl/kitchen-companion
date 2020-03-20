@@ -33,9 +33,6 @@ const List = (props) => {
                 />
                 )}
         </div>
-        <div>
-            <button id="editListItem">Edit List</button>
-        </div>
         </>
     );
 }
