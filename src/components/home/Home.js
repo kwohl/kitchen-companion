@@ -10,7 +10,11 @@ const Home = (props) => {
 
 const handleFieldChange = evt => {
     const stateToChange = { ...listItem };
-    stateToChange[evt.target.id] = evt.target.value;
+    if (evt.target.id === "itemId") {
+        stateToChange[evt.target.id] = parseInt(evt.target.value)
+    } else {
+    stateToChange[evt.target.id] = evt.target.value
+    };
     setListItem(stateToChange);
 };
 
@@ -45,12 +49,15 @@ useEffect(() => {
                         onChange={handleFieldChange} 
                         id="itemId"
                         placeholder="Item"
-                        > 
-                            {items.map(item => <option key={item.id} item={item} value={item.name}>{item.name}</option>)}
+                        >   
+                            <option>-</option>
+                            {items.map(item => <option key={item.id} item={item} value={parseInt(item.id)}>{item.name}</option>)}
                         </select>
                         <select 
                         required 
-                        onChange={handleFieldChange} >
+                        onChange={handleFieldChange} 
+                        id="status">
+                            <option>-</option>
                             <option value="low">Low</option>
                             <option value="out">Out</option>
                         </select>
