@@ -9,5 +9,9 @@ export default {
             },
             body: JSON.stringify(newListItem)
         }).then(response => response.json())
+    },
+    getItems() {
+        return fetch(`${baseURL}/items`)
+            .then(response => response.json())
     }
 }
