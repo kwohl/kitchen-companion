@@ -5,6 +5,7 @@ import List from './list/List'
 import Login from './auth/Login'
 import Suppliers from './suppliers/Suppliers'
 import SupplierEdit from './suppliers/SupplierEdit'
+import Orders from './orders/Orders'
 
 const ApplicationView = (props) => {
     return (
@@ -23,6 +24,9 @@ const ApplicationView = (props) => {
         }}/>
         <Route path="/suppliers/:supplierId(\d+)/edit" render={props => {
             return <SupplierEdit { ...props }/> 
+        }}/>
+        <Route exact path="/orders" render={props => {
+            return <Orders { ...props }/> 
         }}/>
         </>
     );
