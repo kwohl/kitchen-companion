@@ -8,7 +8,7 @@ import SupplierEdit from './suppliers/SupplierEdit'
 import Orders from './orders/Orders'
 import Employees from './employees/Employees'
 
-const ApplicationView = (props) => {
+const ApplicationViews = (props) => {
     return (
         <>
         <Route path="/home" render={props => {
@@ -36,4 +36,4 @@ const ApplicationView = (props) => {
     );
 }
 
-export default ApplicationView;
+export default ApplicationViews;

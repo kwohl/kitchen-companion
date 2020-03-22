@@ -1,16 +1,29 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { useState } from 'react';
 import './Kitchen.css';
 import NavBar from './components/nav/Nav'
-import ApplicationView from './components/ApplicationViews';
+import ApplicationViews from './components/ApplicationViews';
 
-function App() {
+function Kitchen() {
+  const isAuthenticated = () => sessionStorage.getItem("activeUserId") !== null;
+  
+  const [hasUser, setHasUser] = useState(isAuthenticated());
+
+  const setUser = user => {
+    sessionStorage.setItem("userId", JSON.stringify(user));
+    setHasUser(isAuthenticated());
+  };
+
+  const clearUser = () => {
+    sessionStorage.clear();
+    setHasUser(isAuthenticated());
+  }
+
   return (
     <>
-    <NavBar />
-    <ApplicationView />
+    <NavBar hasUser={hasUser} clearUser={clearUser} />
+    <ApplicationViews hasUser={hasUser} setUser={setUser}/>
     </>
   );
 }
 
-export default App;
+export default Kitchen;
