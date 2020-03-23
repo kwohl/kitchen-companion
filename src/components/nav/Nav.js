@@ -3,8 +3,9 @@ import { withRouter, Link } from 'react-router-dom';
 import './Nav.css'
 
 const NavBar = props => {
-    const clearUser = () => {
-    sessionStorage.clear();
+    const handleLogout = () => {
+    props.clearUser();
+    props.history.push('/');
     };
 
     return (
@@ -12,46 +13,69 @@ const NavBar = props => {
     <div>
     <nav>
         <ul>
-          <li>
+        {props.hasUser
+          ? <li>
             <Link className="nav-link" to="/home">
               Home
             </Link>
-          </li>
-          <li>
+            </li>
+          : null}
+          {props.isAdmin
+          ? <li>
             <Link className="nav-link" to="/list">
               List
             </Link>
-          </li>
-          <li>
+            </li>
+          : null}
+          {props.isAdmin
+          ? <li>
             <Link className="nav-link" to="/orders">
               Orders
             </Link>
-          </li>
-          <li>
+            </li>
+          : null}
+          {props.isAdmin
+          ? <li>
             <Link className="nav-link" to="/suppliers">
               Suppliers
             </Link>
-          </li>
-          <li>
+            </li>
+          : null}
+          {props.isAdmin
+          ? <li>
             <Link className="nav-link" to="/employees">
               Employees
             </Link>
-          </li>
-          <li>
+            </li>
+          : null}
+          {props.hasUser
+          ? <li>
             <Link className="nav-link" to="/settings">
               Settings
             </Link>
-          </li>
-          <li>
+            </li>
+          : null}
+          {props.hasUser
+          ? null
+          : <li>
             <Link className="nav-link" to="/login">
               Log In
             </Link>
-          </li>
-          <li>
-            <Link className="nav-link" onClick={clearUser} to="/login">
+          </li>}
+          {props.hasUser
+          ? null
+          : <li>
+            <Link className="nav-link" to="/register">
+              Register
+            </Link>
+          </li>}
+          {props.hasUser
+          ? <li>
+            <Link className="nav-link" onClick={handleLogout} to="/">
               Log Out
             </Link>
-          </li>
+            </li>
+          : null}
         </ul>
       </nav>
       </div>
