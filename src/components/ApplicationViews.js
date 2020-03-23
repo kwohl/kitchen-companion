@@ -7,8 +7,16 @@ import Suppliers from './suppliers/Suppliers'
 import SupplierEdit from './suppliers/SupplierEdit'
 import Orders from './orders/Orders'
 import Employees from './employees/Employees'
+import Register from './auth/Register'
 
 const ApplicationViews = (props) => {
+    const setUser = props.setUser;
+    const setAdminUser = props.setAdminUser;
+    const hasUser = props.hasUser;
+    const isAdmin = props.isAdmin;
+
+    //TODO: add redirect paths for pages when hasUser = false
+
     return (
         <>
         <Route path="/home" render={props => {
@@ -18,7 +26,7 @@ const ApplicationViews = (props) => {
             return <List { ...props }/> 
         }}/>
         <Route path="/login" render={props => {
-            return <Login { ...props }/> 
+            return <Login setUser={setUser} setAdminUser={setAdminUser} { ...props }/> 
         }}/>
         <Route exact path="/suppliers" render={props => {
             return <Suppliers { ...props }/> 
@@ -31,6 +39,9 @@ const ApplicationViews = (props) => {
         }}/>
         <Route path="/employees" render={props => {
             return <Employees { ...props }/> 
+        }}/>
+        <Route path="/register" render={props => {
+            return <Register setUser={setUser} { ...props }/> 
         }}/>
         </>
     );

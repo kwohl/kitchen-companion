@@ -3,6 +3,7 @@ import LoginManager from "../../modules/LoginManager"
 
 const Login = (props) => {
     const [credentials, setCredentials] = useState({ username: "", email: "" });
+    const setUser = props.setUser;
 
     const handleFieldChange = (evt) => {
         const stateToChange = { ...credentials }
@@ -18,11 +19,9 @@ const Login = (props) => {
             LoginManager.getUsers().then(users => {
                 if (users.find(user => user.username === credentials.username) && users.find(user => user.email === credentials.email)) {
                     const user = users.find(user => user.email === credentials.email)
-
-                    sessionStorage.setItem(
-                        "activeUserId",
-                        JSON.stringify(user.id)
-                    )
+                    
+                    setUser(user)
+                    
                     props.history.push("/home")
                 } else {
                     window.alert("Invalid username or email")
