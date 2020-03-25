@@ -14,6 +14,7 @@ const OrderCard = props => {
             <h3>{props.order.supplier.name}</h3>
             <p>Order Date: {props.order.orderDate}</p>
             <p>Received: {received}</p>
+            <button onClick={() =>props.history.push(`/orders/${props.order.id}/details`)}>Order Details</button>
         </div>
     )
 }

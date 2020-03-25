@@ -2,7 +2,7 @@ const baseURL = "http://localhost:5002"
 
 export default {
     getAll() {
-        return fetch(`${baseURL}/listItems?_expand=item`)
+        return fetch(`${baseURL}/listItems?_expand=item&_expand=user`)
             .then(response => response.json())
     },
     getItemsWithListItems(id) {
@@ -12,6 +12,15 @@ export default {
     deleteListItem(id) {
         return fetch(`${baseURL}/listItems/${id}`, {
             method: "DELETE"
+        }).then(response => response.json())
+    },
+    postNewOrderFromList(newOrder) {
+        return fetch(`${baseURL}/orders`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(newOrder)
         }).then(response => response.json())
     }
 }
