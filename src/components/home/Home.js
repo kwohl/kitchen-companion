@@ -42,6 +42,7 @@ useEffect(() => {
 //TODO: users cannot submit "-" as a form selection
 //TODO: change item name drowpdown to a search bar that you can type in
 //TODO: add function to clear form and reset button after adding an item
+//TODO: something to let user know what they just added
 
     return (
         <div>

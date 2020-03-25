@@ -1,4 +1,4 @@
-import { Route, Redirect } from "react-router-dom";
+import { Route } from "react-router-dom";
 import React from "react";
 import Home from './home/Home'
 import List from './list/List'
@@ -13,8 +13,8 @@ import OrdersWithOrderItems from './orders/OrdersWithOrderItems'
 const ApplicationViews = (props) => {
     const setUser = props.setUser;
     const setAdminUser = props.setAdminUser;
-    const hasUser = props.hasUser;
-    const isAdmin = props.isAdmin;
+    // const hasUser = props.hasUser;
+    // const isAdmin = props.isAdmin;
 
     //TODO: add redirect paths for pages when hasUser = false or when isAdmin = false
 

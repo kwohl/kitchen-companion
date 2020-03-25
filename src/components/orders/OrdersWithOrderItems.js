@@ -1,7 +1,5 @@
 import React, { useState, useEffect } from 'react';
 import OrderManager from '../../modules/OrderManager';
-import OrderCard from './OrderCard';
-import Orders from './Orders';
 import { Link } from 'react-router-dom';
 
 const OrdersWithOrderItems = (props) => {

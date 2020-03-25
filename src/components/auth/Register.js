@@ -29,7 +29,8 @@ const Register = (props) => {
                     username: credentials.firstName.charAt(0).toLowerCase() + credentials.lastName.toLowerCase(),
                     email: credentials.email,
                     firstName: credentials.firstName,
-                    lastName: credentials.lastName
+                    lastName: credentials.lastName,
+                    isAdmin: false
                 }
                 setIsLoading(true)
 

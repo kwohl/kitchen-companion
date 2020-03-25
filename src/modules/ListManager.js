@@ -2,7 +2,7 @@ const baseURL = "http://localhost:5002"
 
 export default {
     getAll() {
-        return fetch(`${baseURL}/listItems?_expand=item`)
+        return fetch(`${baseURL}/listItems?_expand=item&_expand=user`)
             .then(response => response.json())
     },
     getItemsWithListItems(id) {

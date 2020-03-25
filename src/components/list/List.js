@@ -1,14 +1,13 @@
 import React, { useState, useEffect } from 'react'
 import ListItemCard from './ListItemCard'
 import ListManager from '../../modules/ListManager'
-import OrderManager from '../../modules/OrderManager'
-import SupplierManager from '../../modules/SupplierManager'
 
 
 //TODO: grocery list clears when you hit "generate order"
 
 const List = (props) => {
     const [listItems, setListItems] = useState([]);
+    
 
     const getListItems = () => {
         return ListManager.getAll().then(response => {
@@ -16,99 +15,60 @@ const List = (props) => {
         });
     };
 
-    const createNewOrderItems = () => {
-        const array1 = listItems.filter(listItem => listItem.item.supplierId === 1)
-        console.log("supplier1: ", array1)
-        const array2 = listItems.filter(listItem => listItem.item.supplierId === 2)
-        console.log("supplier2: ", array2)
-        if (array1.length > 0 && array2.length > 0) {
-            const newOrder1 = {
-                "supplierId": 1,
-                "isReceived": false,
-                "orderDate": Date.now()
-            }
-            const newOrder2 = {
-                "supplierId": 2,
-                "isReceived": false,
-                "orderDate": Date.now()
-            }
-
-            ListManager.postNewOrderFromList(newOrder1)
-            
-            ListManager.postNewOrderFromList(newOrder2)
-                
-                    OrderManager.getJustOrders().then(orders => {
-                        const currentOrder1 = orders[orders.length -2]
-                       
-                        const currentOrder2 = orders[orders.length -1]
-                       
-                        array1.map(item => {
-                            const newItem1 = {
-                                "orderId": currentOrder1.id,
-                                "itemId": item.itemId
-                            }
-                            OrderManager.postNewOrderItem(newItem1)
-                        })
-
-                        array2.map(item => {
-                            const newItem2 = {
-                                "orderId": currentOrder2.id,
-                                "itemId": item.itemId
-                            }
-                            OrderManager.postNewOrderItem(newItem2)
-                        })
-                    })
-        } else if (array1.length > 0) {
-            const newOrder1 = {
-                "supplierId": 1,
-                "isReceived": false,
-                "orderDate": Date.now()
-            }
-            ListManager.postNewOrderFromList(newOrder1)
-
-            OrderManager.getJustOrders().then(orders => {
-                const currentOrder1 = orders[orders.length -1]
-               
-                array1.map(item => {
-                    const newItem1 = {
-                        "orderId": currentOrder1.id,
-                        "itemId": item.itemId
-                    }
-                    OrderManager.postNewOrderItem(newItem1)
-                })
-            })
-        } else if (array2.length > 0) {
-            const newOrder2 = {
-                "supplierId": 2,
-                "isReceived": false,
-                "orderDate": Date.now()
-            }
-            ListManager.postNewOrderFromList(newOrder2)
-
-            OrderManager.getJustOrders().then(orders => {
-                const currentOrder2 = orders[orders.length -1]
-               
-                array2.map(item => {
-                    const newItem2 = {
-                        "orderId": currentOrder2.id,
-                        "itemId": item.itemId
-                    }
-                    OrderManager.postNewOrderItem(newItem2)
-                })
-            })
-        }
-
-    }
-
     const deleteListItem = (id) => {
         ListManager.deleteListItem(id)
             .then(() => ListManager.getAll().then(setListItems))
     };
+//TODO: look into Promise.all()
+    const clearAllListItems = () => {
+      if (listItems.length > 0) {  
+      listItems.forEach(listItem => {
+            ListManager.deleteListItem(listItem.id)
+        })
+      }
+    }
+
+//orders is accumulator, listItem is current value
+    const orders = listItems.reduce((orders, listItem) => {
+        if (!orders[listItem.item.supplierId]) {
+          orders[listItem.item.supplierId] = [];
+        }
+        orders[listItem.item.supplierId].push(listItem);
+        return orders;
+        
+      }, {});
+      console.log(orders)
+
+    const createNewOrderItems = () => {
+        
+
+        Object.entries(orders)
+        .forEach(orderPair => {
+          return fetch("http://localhost:5002/orders", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json"
+            },
+            body: JSON.stringify({ supplierId: parseInt(orderPair[0]), isReceived: false, orderDate: Date.now() })
+          })
+            .then(resp => resp.json())
+            .then(order => {
+              for (const item of orderPair[1]) {
+                fetch("http://localhost:5002/orderItems", {
+                  method: "POST",
+                  headers: {
+                    "Content-Type": "application/json"
+                  },
+                  body: JSON.stringify({ orderId: order.id, itemId: item.itemId })
+                });
+              }
+            }).then(() => clearAllListItems())
+        })
+    }
 
 
     useEffect(() => {
-        getListItems()
-        
+        getListItems()    
     }, []);
 
     return (
