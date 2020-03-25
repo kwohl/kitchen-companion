@@ -15,9 +15,7 @@ const ApplicationViews = (props) => {
     const setAdminUser = props.setAdminUser;
     const hasUser = props.hasUser;
     const isAdmin = props.isAdmin;
-
-    //TODO: add redirect paths for pages when hasUser = false or when isAdmin = false
-
+    
     return (
         <>
         <Route path="/home" render={props => {
