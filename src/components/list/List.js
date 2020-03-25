@@ -5,6 +5,8 @@ import OrderManager from '../../modules/OrderManager'
 import SupplierManager from '../../modules/SupplierManager'
 
 
+//TODO: grocery list clears when you hit "generate order"
+
 const List = (props) => {
     const [listItems, setListItems] = useState([]);
 
@@ -30,6 +32,7 @@ const List = (props) => {
                 "isReceived": false,
                 "orderDate": Date.now()
             }
+
             ListManager.postNewOrderFromList(newOrder1)
             
             ListManager.postNewOrderFromList(newOrder2)
@@ -55,28 +58,46 @@ const List = (props) => {
                             OrderManager.postNewOrderItem(newItem2)
                         })
                     })
+        } else if (array1.length > 0) {
+            const newOrder1 = {
+                "supplierId": 1,
+                "isReceived": false,
+                "orderDate": Date.now()
+            }
+            ListManager.postNewOrderFromList(newOrder1)
+
+            OrderManager.getJustOrders().then(orders => {
+                const currentOrder1 = orders[orders.length -1]
+               
+                array1.map(item => {
+                    const newItem1 = {
+                        "orderId": currentOrder1.id,
+                        "itemId": item.itemId
+                    }
+                    OrderManager.postNewOrderItem(newItem1)
+                })
+            })
+        } else if (array2.length > 0) {
+            const newOrder2 = {
+                "supplierId": 2,
+                "isReceived": false,
+                "orderDate": Date.now()
+            }
+            ListManager.postNewOrderFromList(newOrder2)
+
+            OrderManager.getJustOrders().then(orders => {
+                const currentOrder2 = orders[orders.length -1]
+               
+                array2.map(item => {
+                    const newItem2 = {
+                        "orderId": currentOrder2.id,
+                        "itemId": item.itemId
+                    }
+                    OrderManager.postNewOrderItem(newItem2)
+                })
+            })
         }
-        // if (array2.length > 0) {
-        //     const newOrder2 = {
-        //         "supplierId": 2,
-        //         "isReceived": false,
-        //         "orderDate": Date.now()
-        //     }
-        //     ListManager.postNewOrderFromList(newOrder2)
-                
-        //             OrderManager.getJustOrders().then(orders => {
-        //                 const currentOrder2 = orders[orders.length -1]
-        //                 console.log("currentOrder2: ", currentOrder2)
-        //                 array2.map(item => {
-        //                     const newItem2 = {
-        //                         "orderId": currentOrder2.id,
-        //                         "itemId": item.itemId
-        //                     }
-        //                     OrderManager.postNewOrderItem(newItem2)
-        //                 })
-        //             })
-                
-        // }
+
     }
 
     const deleteListItem = (id) => {

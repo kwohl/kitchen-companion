@@ -16,7 +16,7 @@ const ApplicationViews = (props) => {
     const hasUser = props.hasUser;
     const isAdmin = props.isAdmin;
 
-    //TODO: add redirect paths for pages when hasUser = false
+    //TODO: add redirect paths for pages when hasUser = false or when isAdmin = false
 
     return (
         <>
