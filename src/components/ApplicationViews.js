@@ -8,6 +8,7 @@ import SupplierEdit from './suppliers/SupplierEdit'
 import Orders from './orders/Orders'
 import Employees from './employees/Employees'
 import Register from './auth/Register'
+import OrdersWithOrderItems from './orders/OrdersWithOrderItems'
 
 const ApplicationViews = (props) => {
     const setUser = props.setUser;
@@ -36,6 +37,9 @@ const ApplicationViews = (props) => {
         }}/>
         <Route exact path="/orders" render={props => {
             return <Orders { ...props }/> 
+        }}/>
+        <Route path="/orders/:orderId(\d+)/details" render={props => {
+            return <OrdersWithOrderItems orderId={parseInt(props.match.params.orderId)}{ ...props }/> 
         }}/>
         <Route path="/employees" render={props => {
             return <Employees { ...props }/> 

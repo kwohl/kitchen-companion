@@ -1,15 +1,19 @@
 import React, { useState, useEffect } from 'react'
 import OrderCard from './OrderCard'
 import OrderManager from '../../modules/OrderManager'
+import OrdersWithOrderItems from './OrdersWithOrderItems'
 
 const Orders = (props) => {
+
     const [orders, setOrders] = useState([]);
+    
 
     const getOrders = () => {
         return OrderManager.getAll().then(response => {
             setOrders(response);
         });
     };
+
 
     useEffect(() => {
         getOrders()

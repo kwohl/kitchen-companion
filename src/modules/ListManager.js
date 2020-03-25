@@ -13,5 +13,14 @@ export default {
         return fetch(`${baseURL}/listItems/${id}`, {
             method: "DELETE"
         }).then(response => response.json())
+    },
+    postNewOrderFromList(newOrder) {
+        return fetch(`${baseURL}/orders`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(newOrder)
+        }).then(response => response.json())
     }
 }
