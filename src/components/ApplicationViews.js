@@ -9,6 +9,8 @@ import Orders from './orders/Orders'
 import Employees from './employees/Employees'
 import Register from './auth/Register'
 import OrdersWithOrderItems from './orders/OrdersWithOrderItems'
+import Settings from './settings/Settings'
+import SupplierOrderView from "./suppliers/SupplierOrderView";
 
 const ApplicationViews = (props) => {
     const setUser = props.setUser;
@@ -72,6 +74,20 @@ const ApplicationViews = (props) => {
         }}/>
         <Route path="/register" render={props => {
             return <Register setUser={setUser} { ...props }/>   
+        }}/>
+        <Route path="/settings" render={props => {
+            if (hasUser) {
+            return <Settings { ...props }/> 
+            } else {
+                return <Redirect to="/home" />
+            }
+        }}/>
+        <Route path="/suppliers/:supplierId(\d+)/orders" render={props => {
+            if (isAdmin) {
+            return <SupplierOrderView supplierId={parseInt(props.match.params.supplierId)}{ ...props }/>
+            } else {
+                return <Redirect to="/home" />
+            } 
         }}/>
         </>
     );

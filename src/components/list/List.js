@@ -49,7 +49,7 @@ const List = (props) => {
             headers: {
               "Content-Type": "application/json"
             },
-            body: JSON.stringify({ supplierId: parseInt(orderPair[0]), isReceived: false, orderDate: Date.now() })
+            body: JSON.stringify({ supplierId: parseInt(orderPair[0]), isReceived: false, orderDate: Date() })
           })
             .then(resp => resp.json())
             .then(order => {
@@ -62,7 +62,7 @@ const List = (props) => {
                   body: JSON.stringify({ orderId: order.id, itemId: item.itemId })
                 });
               }
-            }).then(() => clearAllListItems())
+            })
         })
     }
 

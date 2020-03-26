@@ -15,5 +15,9 @@ export default {
     },
     getSupplier(id) {
         return fetch(`${baseUrl}/suppliers/${id}`).then(response => response.json())
-    } 
+    },
+    getSupplierWithOrders(id) {
+        return fetch (`${baseUrl}/suppliers/${id}?_embed=orders`)
+            .then(response => response.json())
+    }
 }

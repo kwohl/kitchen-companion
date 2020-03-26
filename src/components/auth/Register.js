@@ -44,7 +44,7 @@ const Register = (props) => {
                         //     "activeUserId", 
                         //     JSON.stringify(activeUser.id)
                         // )
-
+                        window.alert("Welcome! Your username is " + activeUser.username + ".")
                         props.history.push("/home")
                     })
                 })

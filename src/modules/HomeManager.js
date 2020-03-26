@@ -13,5 +13,9 @@ export default {
     getItems() {
         return fetch(`${baseURL}/items`)
             .then(response => response.json())
+    },
+    getListItems() {
+        return fetch(`${baseURL}/ListItems`)
+            .then(response => response.json())
     }
 }

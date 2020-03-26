@@ -11,7 +11,7 @@ const Home = (props) => {
 const handleFieldChange = evt => {
     const stateToChange = { ...listItem };
     if (evt.target.id === "itemId") {
-        stateToChange[evt.target.id] = parseInt(evt.target.value)
+            stateToChange[evt.target.id] = parseInt(evt.target.value)
     } else {
     stateToChange[evt.target.id] = evt.target.value
     };
@@ -24,25 +24,43 @@ const getItems = () => {
     });
 };
 
+const clearInputFields = () => {
+
+}
+
 const constructNewListItem = evt => {
     evt.preventDefault();
     setIsLoading(true);
     listItem.listId = 1
     listItem.userId = parseInt(sessionStorage.getItem("activeUserId"))
-    listItem.dateAdded = Date.now()
-    HomeManager.post(listItem)
-        .then(() => props.history.push("/home"));
+    listItem.dateAdded = Date()
+
+    HomeManager.getListItems()
+        .then(response => {
+            const existingListItem = response.find(item => item.itemId === listItem.itemId)
+            if (existingListItem !== undefined) {
+                window.alert("That item is already on the list!")
+                setIsLoading(false)
+            } else if (listItem.itemId === "-" || listItem.status === "-" || listItem.itemId === "" || listItem.status === "") {
+                window.alert("Please select a valid option for both fields.")
+                setIsLoading(false)
+            } else {
+                HomeManager.post(listItem)
+                .then(() => setIsLoading(false))
+                .then(() => window.alert("success!"))
+                .then(() => props.history.push("/home"));
+            }
+        })
 }
 
 useEffect(() => {
     getItems()
 }, []);
 
-
-//TODO: users cannot submit "-" as a form selection
 //TODO: change item name drowpdown to a search bar that you can type in
-//TODO: add function to clear form and reset button after adding an item
+//TODO: add function to clear form after adding an item
 //TODO: something to let user know what they just added
+//TODO: if an item is already on the list but the status has changed from low to out, update list item
 
     return (
         <div>
@@ -56,14 +74,14 @@ useEffect(() => {
                         id="itemId"
                         placeholder="Item"
                         >   
-                            <option>-</option>
+                            <option value="-">-</option>
                             {items.map(item => <option key={item.id} item={item} value={parseInt(item.id)}>{item.name}</option>)}
                         </select>
                         <select 
                         required 
                         onChange={handleFieldChange} 
                         id="status">
-                            <option>-</option>
+                            <option value="-">-</option>
                             <option value="low">Low</option>
                             <option value="out">Out</option>
                         </select>

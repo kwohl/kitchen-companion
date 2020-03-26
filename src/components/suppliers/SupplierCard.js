@@ -9,7 +9,7 @@ return (
             <h3>{props.supplier.name}</h3>
             <p>Contact: {props.supplier.contact}</p>
             <p>Email: {props.supplier.email}</p>
-            <button id="viewOrders" >View Orders</button>
+            <button id="viewOrders" onClick={() => props.history.push(`/suppliers/${props.supplier.id}/orders`)}>View Orders</button>
             <button onClick={() => props.history.push(`/suppliers/${props.supplier.id}/edit`)} id="editSupplier" >Edit Supplier</button>
             <button id="deleteSupplier" >Remove Supplier</button>
         </div>
