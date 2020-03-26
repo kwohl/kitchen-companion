@@ -5,7 +5,6 @@ import OrderManager from '../../modules/OrderManager'
 //TODO: admin user can change received status of an order from this page
 //TODO: different sections for orders that have been received (past orders) and orders that have been placed but are still pending
 const Orders = (props) => {
-
     const [orders, setOrders] = useState([]);
     
 
