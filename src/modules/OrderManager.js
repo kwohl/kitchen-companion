@@ -14,7 +14,7 @@ export default {
             .then(response => response.json())
     },
     getOrderItemsWithNames() {
-        return fetch(`${baseURL}/orderItems?_expand=item`)
+        return fetch(`${baseURL}/orderItems?_expand=item&_expand=order`)
             .then(response => response.json())
     },
     getOrderWithSupplier(id) {
@@ -29,5 +29,14 @@ export default {
             },
             body: JSON.stringify(newOrderItem)
         }).then(response => response.json())
+    },
+    updateOrder(updatedOrder) {
+        return fetch(`${baseURL}/orders/${updatedOrder.id}`, {
+            method: "PUT",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(updatedOrder)
+        }).then(response => response.json());
     }
 }
