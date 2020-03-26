@@ -27,6 +27,9 @@ const Suppliers = (props) => {
                 />
                 )}
         </div>
+        <div>
+            <button onClick={() => props.history.push("/suppliers/new")}>Add New Supplier</button>
+        </div>
         </>
     );
 }

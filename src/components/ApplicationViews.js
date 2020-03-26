@@ -1,16 +1,17 @@
 import { Route, Redirect } from "react-router-dom";
 import React from "react";
-import Home from './home/Home'
-import List from './list/List'
-import Login from './auth/Login'
-import Suppliers from './suppliers/Suppliers'
-import SupplierEdit from './suppliers/SupplierEdit'
-import Orders from './orders/Orders'
-import Employees from './employees/Employees'
-import Register from './auth/Register'
-import OrdersWithOrderItems from './orders/OrdersWithOrderItems'
-import Settings from './settings/Settings'
-import SupplierOrderView from "./suppliers/SupplierOrderView";
+import Home from './home/Home';
+import List from './list/List';
+import Login from './auth/Login';
+import Suppliers from './suppliers/Suppliers';
+import SupplierEdit from './suppliers/SupplierEdit';
+import Orders from './orders/Orders';
+import Employees from './employees/Employees';
+import Register from './auth/Register';
+import OrdersWithOrderItems from './orders/OrdersWithOrderItems';
+import Settings from './settings/Settings';
+import SupplierOrderView from './suppliers/SupplierOrderView';
+import SupplierForm from './suppliers/SupplierForm';
 
 const ApplicationViews = (props) => {
     const setUser = props.setUser;
@@ -88,6 +89,13 @@ const ApplicationViews = (props) => {
             } else {
                 return <Redirect to="/home" />
             } 
+        }}/>
+        <Route path="/suppliers/new" render={props => {
+            if (isAdmin) {
+            return <SupplierForm { ...props }/> 
+            } else {
+                return <Redirect to="/home" />
+            }
         }}/>
         </>
     );

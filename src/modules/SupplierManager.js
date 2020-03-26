@@ -19,5 +19,14 @@ export default {
     getSupplierWithOrders(id) {
         return fetch (`${baseUrl}/suppliers/${id}?_embed=orders`)
             .then(response => response.json())
+    },
+    addSupplier(newSupplier) {
+        return fetch(`${baseUrl}/suppliers`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(newSupplier)
+        }).then(response => response.json())
     }
 }
