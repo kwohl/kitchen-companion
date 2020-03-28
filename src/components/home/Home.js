@@ -63,6 +63,12 @@ useEffect(() => {
 //TODO: if an item is already on the list but the status has changed from low to out, update list item
 
     return (
+        <>
+        <div>
+            <h1>Welcome! This is the MVP branch!</h1>
+            <br />
+            <br />
+        </div>
         <div>
             <h1>Add an Item to the List</h1>
             <form>
@@ -95,6 +101,7 @@ useEffect(() => {
             </form>
 
         </div>
+        </>
     )
 }
 
