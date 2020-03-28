@@ -12,6 +12,7 @@ import OrdersWithOrderItems from './orders/OrdersWithOrderItems';
 import Settings from './settings/Settings';
 import SupplierOrderView from './suppliers/SupplierOrderView';
 import SupplierForm from './suppliers/SupplierForm';
+import SupplierItemForm from './suppliers/SupplierItemForm';
 
 const ApplicationViews = (props) => {
     const setUser = props.setUser;
@@ -76,7 +77,7 @@ const ApplicationViews = (props) => {
         <Route path="/register" render={props => {
             return <Register setUser={setUser} { ...props }/>   
         }}/>
-        <Route path="/settings" render={props => {
+        <Route path="/profile" render={props => {
             if (hasUser) {
             return <Settings { ...props }/> 
             } else {
@@ -86,6 +87,13 @@ const ApplicationViews = (props) => {
         <Route path="/suppliers/:supplierId(\d+)/orders" render={props => {
             if (isAdmin) {
             return <SupplierOrderView supplierId={parseInt(props.match.params.supplierId)}{ ...props }/>
+            } else {
+                return <Redirect to="/home" />
+            } 
+        }}/>
+        <Route path="/suppliers/:supplierId(\d+)/items" render={props => {
+            if (isAdmin) {
+            return <SupplierItemForm supplierId={parseInt(props.match.params.supplierId)}{ ...props }/>
             } else {
                 return <Redirect to="/home" />
             } 

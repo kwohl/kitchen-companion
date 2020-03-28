@@ -28,5 +28,14 @@ export default {
             },
             body: JSON.stringify(newSupplier)
         }).then(response => response.json())
+    },
+    addItem(newItem) {
+        return fetch(`${baseUrl}/items?_expand=supplier`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(newItem)
+        }).then(response => response.json())
     }
 }

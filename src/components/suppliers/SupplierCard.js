@@ -11,6 +11,7 @@ return (
             <p>Email: {props.supplier.email}</p>
             <button id="viewOrders" onClick={() => props.history.push(`/suppliers/${props.supplier.id}/orders`)}>View Orders</button>
             <button onClick={() => props.history.push(`/suppliers/${props.supplier.id}/edit`)} id="editSupplier" >Edit Supplier</button>
+            <button onClick={() => props.history.push(`/suppliers/${props.supplier.id}/items`)} id="addItems" >Add Items</button>
             <button id="deleteSupplier" >Remove Supplier</button>
         </div>
     )
