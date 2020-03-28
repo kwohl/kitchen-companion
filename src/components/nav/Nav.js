@@ -50,8 +50,8 @@ const NavBar = props => {
           : null}
           {props.hasUser
           ? <li>
-            <Link className="nav-link" to="/settings">
-              Settings
+            <Link className="nav-link" to="/profile">
+              Profile
             </Link>
             </li>
           : null}

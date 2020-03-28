@@ -1,8 +1,8 @@
-const baseURL = "http://localhost:5002"
+const baseUrl = "http://localhost:5002"
 
 export default {
     post(newListItem) {
-        return fetch(`${baseURL}/listItems`, {
+        return fetch(`${baseUrl}/listItems`, {
             method: "POST",
             headers: {
                 "Content-Type": "application/json"
@@ -11,7 +11,11 @@ export default {
         }).then(response => response.json())
     },
     getItems() {
-        return fetch(`${baseURL}/items`)
+        return fetch(`${baseUrl}/items`)
+            .then(response => response.json())
+    },
+    getListItems() {
+        return fetch(`${baseUrl}/ListItems`)
             .then(response => response.json())
     }
 }

@@ -15,5 +15,27 @@ export default {
     },
     getSupplier(id) {
         return fetch(`${baseUrl}/suppliers/${id}`).then(response => response.json())
-    } 
+    },
+    getSupplierWithOrders(id) {
+        return fetch (`${baseUrl}/suppliers/${id}?_embed=orders`)
+            .then(response => response.json())
+    },
+    addSupplier(newSupplier) {
+        return fetch(`${baseUrl}/suppliers`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(newSupplier)
+        }).then(response => response.json())
+    },
+    addItem(newItem) {
+        return fetch(`${baseUrl}/items?_expand=supplier`, {
+            method: "POST",
+            headers: {
+                "Content-Type": "application/json"
+            },
+            body: JSON.stringify(newItem)
+        }).then(response => response.json())
+    }
 }
