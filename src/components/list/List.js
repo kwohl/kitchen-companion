@@ -19,14 +19,6 @@ const List = (props) => {
         ListManager.deleteListItem(id)
             .then(() => ListManager.getAll().then(setListItems))
     };
-//TODO: look into Promise.all()
-    const clearAllListItems = () => {
-      if (listItems.length > 0) {  
-      listItems.forEach(listItem => {
-            ListManager.deleteListItem(listItem.id)
-        })
-      }
-    }
 
 //orders is accumulator, listItem is current value
     const orders = listItems.reduce((orders, listItem) => {
@@ -40,9 +32,9 @@ const List = (props) => {
       console.log(orders)
 
     const createNewOrderItems = () => {
-        
-
-        Object.entries(orders)
+        const confirm = window.confirm(`You are about to generate ${Object.entries(orders).length} new orders. Would you like to procede?`)
+        if (confirm === true) {
+          Object.entries(orders)
         .forEach(orderPair => {
           return fetch("http://localhost:5002/orders", {
             method: "POST",
@@ -60,10 +52,11 @@ const List = (props) => {
                     "Content-Type": "application/json"
                   },
                   body: JSON.stringify({ orderId: order.id, itemId: item.itemId })
-                });
+                }).then(() => deleteListItem(item.id))
               }
             })
         })
+        }
     }
 
 
