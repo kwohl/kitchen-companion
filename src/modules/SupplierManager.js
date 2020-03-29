@@ -41,5 +41,10 @@ export default {
     getSupplierWithItems(id) {
         return fetch (`${baseUrl}/suppliers/${id}?_embed=items`)
             .then(response => response.json())
+    },
+    deleteSupplier(id) {
+        return fetch(`${baseUrl}/suppliers/${id}`, {
+            method: "DELETE"
+        }).then(response => response.json())
     }
 }

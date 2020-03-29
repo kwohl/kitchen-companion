@@ -30,7 +30,8 @@ const SupplierItemForm = props => {
         setIsLoading(true);
         
         SupplierManager.addItem(newItem)
-          .then(() => props.history.push("/suppliers"));
+          .then(() => getSupplierAndItems())
+          .then(() => setIsLoading(false));
       }
     };
 
