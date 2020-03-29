@@ -37,5 +37,9 @@ export default {
             },
             body: JSON.stringify(newItem)
         }).then(response => response.json())
+    },
+    getSupplierWithItems(id) {
+        return fetch (`${baseUrl}/suppliers/${id}?_embed=items`)
+            .then(response => response.json())
     }
 }

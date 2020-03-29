@@ -1,28 +1,42 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import SupplierManager from '../../modules/SupplierManager'
 
 const SupplierItemForm = props => {
-    const [item, setItem] = useState({ name: "", supplierId: "" });
+    const [newItem, setNewItem] = useState({ name: "", supplierId: "" });
     const [isLoading, setIsLoading] = useState(false);
+    const [supplier, setSupplier] = useState({});
+    const [items, setItems] = useState([]);
   
     const handleFieldChange = evt => {
-      const stateToChange = { ...item };
+      const stateToChange = { ...newItem };
       stateToChange[evt.target.id] = evt.target.value;
-      setItem(stateToChange);
+      setNewItem(stateToChange);
     };
   
+    const getSupplierAndItems = () => {
+        SupplierManager.getSupplierWithItems(props.supplierId)
+            .then(response => {
+                setSupplier(response)
+                setItems(response.items)
+            });
+    }
+
     const createNewItem = evt => {
       evt.preventDefault();
-      if (item.name === "") {
-        window.alert("Please input an item");
+      if (newItem.name === "") {
+        window.alert("Please input an newItem");
       } else {
-        item.supplierId = props.supplierId
+        newItem.supplierId = props.supplierId
         setIsLoading(true);
         
-        SupplierManager.addItem(item)
+        SupplierManager.addItem(newItem)
           .then(() => props.history.push("/suppliers"));
       }
     };
+
+    useEffect(() => {
+        getSupplierAndItems()
+    }, []);
   
     return (
       <>
@@ -41,10 +55,15 @@ const SupplierItemForm = props => {
               <button
                 disabled={isLoading}
                 onClick={createNewItem}
-              >Submit</button>
+              >Add Item</button>
             </div>
           </fieldset>
         </form>
+        <div>
+            <h3>{supplier.name}</h3>
+            <h4>Current Items</h4>
+            {items.map(item => <p key={item.id}>{item.name}</p>)}
+        </div>
       </>
     );
   };
