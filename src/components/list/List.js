@@ -2,9 +2,6 @@ import React, { useState, useEffect } from 'react'
 import ListItemCard from './ListItemCard'
 import ListManager from '../../modules/ListManager'
 
-
-//TODO: grocery list clears when you hit "generate order"
-
 const List = (props) => {
     const [listItems, setListItems] = useState([]);
     

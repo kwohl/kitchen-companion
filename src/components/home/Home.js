@@ -38,6 +38,7 @@ const constructNewListItem = evt => {
     HomeManager.getListItems()
         .then(response => {
             const existingListItem = response.find(item => item.itemId === listItem.itemId)
+            
             if (existingListItem !== undefined) {
                 window.alert("That item is already on the list!")
                 setIsLoading(false)
@@ -47,7 +48,7 @@ const constructNewListItem = evt => {
             } else {
                 HomeManager.post(listItem)
                 .then(() => setIsLoading(false))
-                .then(() => window.alert("success!"))
+                .then(() => window.alert(`Success!`))
                 .then(() => props.history.push("/home"));
             }
         })
