@@ -25,7 +25,7 @@ const getItems = () => {
 };
 
 const clearInputFields = () => {
-
+ 
 }
 
 const constructNewListItem = evt => {
@@ -38,6 +38,7 @@ const constructNewListItem = evt => {
     HomeManager.getListItems()
         .then(response => {
             const existingListItem = response.find(item => item.itemId === listItem.itemId)
+            
             if (existingListItem !== undefined) {
                 window.alert("That item is already on the list!")
                 setIsLoading(false)
@@ -47,7 +48,7 @@ const constructNewListItem = evt => {
             } else {
                 HomeManager.post(listItem)
                 .then(() => setIsLoading(false))
-                .then(() => window.alert("success!"))
+                .then(() => window.alert(`Success!`))
                 .then(() => props.history.push("/home"));
             }
         })
@@ -68,7 +69,7 @@ useEffect(() => {
             <form>
                 <fieldset>
                     <div className="addListItemInputFields">
-                        <select  
+                        <select 
                         required 
                         onChange={handleFieldChange} 
                         id="itemId"
@@ -78,6 +79,7 @@ useEffect(() => {
                             {items.map(item => <option key={item.id} item={item} value={parseInt(item.id)}>{item.name}</option>)}
                         </select>
                         <select 
+                        
                         required 
                         onChange={handleFieldChange} 
                         id="status">

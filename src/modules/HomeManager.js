@@ -15,7 +15,7 @@ export default {
             .then(response => response.json())
     },
     getListItems() {
-        return fetch(`${baseUrl}/ListItems`)
+        return fetch(`${baseUrl}/listItems?_expand=item`)
             .then(response => response.json())
     }
 }
