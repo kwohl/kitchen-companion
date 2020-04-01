@@ -4,8 +4,8 @@ import { Link } from 'react-router-dom';
 
 const OrdersWithOrderItems = (props) => {
     const [orderItems, setOrderItems] = useState([]);
-    const [toDisplay, setToDisplay] = useState(true)
-    const [orderObject, setOrderObject] = useState({})
+    const [toDisplay, setToDisplay] = useState(true);
+    const [orderObject, setOrderObject] = useState({});
 
 
     const markOrderReceived = (order) => {

@@ -16,9 +16,12 @@ const Employees = (props) => {
             .then(() => EmployeeManager.getAll().then(setEmployees))
     };
 
+
     useEffect(() => {
         getEmployees()
     }, []);
+
+
 
     return (
         <>

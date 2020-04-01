@@ -24,6 +24,7 @@ const SupplierForm = props => {
   
     return (
       <>
+        
         <form>
           <fieldset>
             <div>

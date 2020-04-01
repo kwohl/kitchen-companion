@@ -25,7 +25,7 @@ const getItems = () => {
 };
 
 const clearInputFields = () => {
-
+ 
 }
 
 const constructNewListItem = evt => {
@@ -69,7 +69,7 @@ useEffect(() => {
             <form>
                 <fieldset>
                     <div className="addListItemInputFields">
-                        <select  
+                        <select 
                         required 
                         onChange={handleFieldChange} 
                         id="itemId"
@@ -79,6 +79,7 @@ useEffect(() => {
                             {items.map(item => <option key={item.id} item={item} value={parseInt(item.id)}>{item.name}</option>)}
                         </select>
                         <select 
+                        
                         required 
                         onChange={handleFieldChange} 
                         id="status">
