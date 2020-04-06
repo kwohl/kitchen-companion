@@ -32,7 +32,7 @@ function Kitchen() {
   return (
     <>
     <NavBar hasUser={hasUser} isAdmin={isAdmin} clearUser={clearUser} />
-    <ApplicationViews hasUser={hasUser} isAdmin={isAdmin} setUser={setUser}/>
+    <ApplicationViews hasUser={hasUser} isAdmin={isAdmin} setUser={setUser} />
     </>
   );
 }

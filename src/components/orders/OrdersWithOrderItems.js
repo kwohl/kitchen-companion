@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import OrderManager from '../../modules/OrderManager';
 import { Link } from 'react-router-dom';
+import { Button } from 'semantic-ui-react'
 
 const OrdersWithOrderItems = (props) => {
     const [orderItems, setOrderItems] = useState([]);
@@ -34,13 +35,13 @@ const OrdersWithOrderItems = (props) => {
             });
     }, []);
 
-
+    
     return (
         <div>
         <h4>Items Ordered</h4>
         {orderItems.map(orderItem => <p key={orderItem.id}>{orderItem.item.name}</p>)}
-        <button style={{display:  toDisplay ? '' : 'none'}} onClick={() => markOrderReceived(orderObject)} >Mark Order Received</button>
-        <Link to="/orders">Back</Link>
+        <Button style={{display:  toDisplay ? '' : 'none'}} onClick={() => markOrderReceived(orderObject)} >Mark Order Received</Button>
+        <Button onClick={() =>props.history.push(`/orders`)}>Back</Button>
         </div>
     )
     

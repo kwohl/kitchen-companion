@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import SupplierManager from '../../modules/SupplierManager'
+import { Button, Form } from 'semantic-ui-react'
 
 const SupplierForm = props => {
     const [supplier, setSupplier] = useState({ name: "", contact: "", email: "" });
@@ -25,7 +26,7 @@ const SupplierForm = props => {
     return (
       <>
         
-        <form>
+        <Form>
           <fieldset>
             <div>
               <input
@@ -51,14 +52,14 @@ const SupplierForm = props => {
               />
             </div>
             <div>
-              <button
+              <Button
                 type="button"
                 disabled={isLoading}
                 onClick={createNewSupplier}
-              >Submit</button>
+              >Submit</Button>
             </div>
           </fieldset>
-        </form>
+        </Form>
       </>
     );
   };

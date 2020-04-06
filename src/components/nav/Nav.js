@@ -1,84 +1,110 @@
-import React from "react";
+import React, { useState, useEffect } from "react";
 import { withRouter, Link } from 'react-router-dom';
 import './Nav.css'
+import { Menu, Icon, Sidebar } from 'semantic-ui-react'
 
 const NavBar = props => {
-    const handleLogout = () => {
+
+  const [visible, setVisible] = useState(false)
+    
+  
+  const handleLogout = () => {
     props.clearUser();
+    setVisible(false)
     props.history.push('/');
     };
 
+    
     return (
     <>
-    <div>
+    <Icon 
+    onClick={() => setVisible(true)}
+    name='bars'
+    size='big'
+    />
+    <Sidebar
+    as={Menu}
+    animation='overlay'
+    icon='labeled'
+    vertical
+    visible={visible}
+    onHide={() => setVisible(false)}
+    >
+    <Menu vertical secondary>
     <nav>
-        <ul>
+        
         {props.hasUser
-          ? <li>
-            <Link className="nav-link" to="/home">
-              Home
+          ? <Link 
+            onClick={() => setVisible(false)}
+            to="/home">
+            <Menu.Item 
+            name='add'
+            link>
+            Home
+            </Menu.Item>
             </Link>
-            </li>
           : null}
           {props.isAdmin
-          ? <li>
-            <Link className="nav-link" to="/list">
-              List
+          ? <Link 
+          onClick={() => setVisible(false)}
+            to="/list">
+            <Menu.Item link>
+             List
+            </Menu.Item>
             </Link>
-            </li>
           : null}
           {props.isAdmin
-          ? <li>
-            <Link className="nav-link" to="/orders">
+          ? <Link to="/orders" onClick={() => setVisible(false)}>
+            <Menu.Item link>
               Orders
+            </Menu.Item>
             </Link>
-            </li>
           : null}
           {props.isAdmin
-          ? <li>
-            <Link className="nav-link" to="/suppliers">
+          ? <Link to="/suppliers" onClick={() => setVisible(false)}>
+            <Menu.Item link>
               Suppliers
+            </Menu.Item>
             </Link>
-            </li>
           : null}
           {props.isAdmin
-          ? <li>
-            <Link className="nav-link" to="/employees">
+          ? <Link to="/employees" onClick={() => setVisible(false)}>
+            <Menu.Item link>
               Employees
+            </Menu.Item>
             </Link>
-            </li>
           : null}
           {props.hasUser
-          ? <li>
-            <Link className="nav-link" to="/profile">
+          ? <Link to="/profile" onClick={() => setVisible(false)}>
+            <Menu.Item link>
               Profile
+            </Menu.Item>
             </Link>
-            </li>
           : null}
           {props.hasUser
           ? null
-          : <li>
-            <Link className="nav-link" to="/login">
+          : <Link to="/login">
+            <Menu.Item link>
               Log In
-            </Link>
-          </li>}
+            </Menu.Item>
+            </Link>}
           {props.hasUser
           ? null
-          : <li>
-            <Link className="nav-link" to="/register">
+          : <Link to="/register">
+            <Menu.Item link>
               Register
-            </Link>
-          </li>}
+            </Menu.Item>
+            </Link>}
           {props.hasUser
-          ? <li>
-            <Link className="nav-link" onClick={handleLogout} to="/">
+          ? <Link onClick={handleLogout} to="/">
+            <Menu.Item link>
               Log Out
+            </Menu.Item>
             </Link>
-            </li>
           : null}
-        </ul>
       </nav>
-      </div>
+      </Menu>
+      </Sidebar>
       </>
         );
 }

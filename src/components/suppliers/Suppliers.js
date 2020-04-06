@@ -1,9 +1,18 @@
 import React, { useState, useEffect } from 'react'
 import SupplierManager from '../../modules/SupplierManager'
 import SupplierCard from './SupplierCard'
+import { Button, Header, Image, Modal } from 'semantic-ui-react'
 
 const Suppliers = (props) => {
     const [suppliers, setSuppliers] = useState([]);
+    const [orders, setOrders] = useState([]);
+
+    const getOrdersWithSupplier = (supplierId) => {
+        SupplierManager.getSupplierWithOrders(supplierId)
+            .then(response => {
+                setOrders(response.orders)
+            })
+    }
 
     const getSuppliers = () => {
         SupplierManager.getSuppliers().then(response => {
@@ -31,13 +40,15 @@ const Suppliers = (props) => {
                 <SupplierCard
                     key={supplier.id}
                     supplier={supplier}
+                    orders={orders}
+                    getOrdersWithSupplier={getOrdersWithSupplier}
                     deleteSupplier={deleteSupplier}
                     { ...props }
                 />
                 )}
         </div>
         <div>
-            <button onClick={() => props.history.push("/suppliers/new")}>Add New Supplier</button>
+            <Button onClick={() => props.history.push("/suppliers/new")}>Add New Supplier</Button>
         </div>
         </>
     );

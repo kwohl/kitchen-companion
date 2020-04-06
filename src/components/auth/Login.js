@@ -1,5 +1,6 @@
 import React, { useState } from "react"
 import LoginManager from "../../modules/LoginManager"
+import { Button, Form } from 'semantic-ui-react'
 
 const Login = (props) => {
     const [credentials, setCredentials] = useState({ username: "", email: "" });
@@ -31,7 +32,7 @@ const Login = (props) => {
     };
 
     return (
-        <form>
+        <Form>
              <fieldset>
                  <h2>Sign In</h2>
                  <div>
@@ -41,9 +42,9 @@ const Login = (props) => {
                      <input onChange={handleFieldChange} type="text" id="email" 
                      placeholder="Email Address" />
                  </div>
-                 <button type="submit" onClick={handleLogin}>Log In</button>
+                 <Button type="submit" onClick={handleLogin}>Log In</Button>
              </fieldset>
-         </form>
+         </Form>
     );
 }
 

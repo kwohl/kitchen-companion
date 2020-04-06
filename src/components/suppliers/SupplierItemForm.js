@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import SupplierManager from '../../modules/SupplierManager'
+import { Button, Form } from 'semantic-ui-react'
 
 const SupplierItemForm = props => {
     const [newItem, setNewItem] = useState({ name: "", supplierId: "" });
@@ -41,7 +42,7 @@ const SupplierItemForm = props => {
   
     return (
       <>
-        <form>
+        <Form>
           <fieldset>
             <div>
               <input
@@ -53,13 +54,13 @@ const SupplierItemForm = props => {
               />
             </div>
             <div>
-              <button
+              <Button
                 disabled={isLoading}
                 onClick={createNewItem}
-              >Add Item</button>
+              >Add Item</Button>
             </div>
           </fieldset>
-        </form>
+        </Form>
         <div>
             <h3>{supplier.name}</h3>
             <h4>Current Items</h4>
