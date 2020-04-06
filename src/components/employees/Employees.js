@@ -25,7 +25,10 @@ const Employees = (props) => {
 
     return (
         <>
+        <div className="center">
         <h1>Employees</h1>
+        </div>
+        <div className="center">
         <div>
             {employees.map(employee =>
                 <EmployeeCard
@@ -35,6 +38,7 @@ const Employees = (props) => {
                     { ...props }
                 />
                 )}
+        </div>
         </div>
         </>
     );

@@ -1,7 +1,10 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
+import { Button, Card, Modal, Header, Icon, Popup } from 'semantic-ui-react'
+import OrderManager from '../../modules/OrderManager'
 
 const OrderCard = props => {
-    
+    const [toDisplay, setToDisplay] = useState(true)
+
     let received=""
     
     if (props.order.isReceived === false) {
@@ -11,14 +14,53 @@ const OrderCard = props => {
         
     };
 
+
+
+    const markOrderReceived = (order) => {
+        const updatedOrderItem = {
+            id: order.id,
+            supplierId: order.supplierId,
+            isReceived: true,
+            orderDate: order.orderDate
+        }
+        OrderManager.updateOrder(updatedOrderItem) 
+        setToDisplay(false)       
+    }
+
+
+
+    useEffect(() => {
+        if (props.order.isReceived === true) {
+                setToDisplay(false)
+        }
+    }, [props.order.isReceived]);
+
     return (
+        <>
+        <Card>
+        <h3>{props.order.supplier.name}</h3>
+        <p>Order Date: {props.order.orderDate}</p>
+        <p>Received: <Icon name='checkmark' style={{display:  toDisplay ? 'none' : ''}} /> <Icon name='cancel' style={{display:  toDisplay ? '' : 'none'}} /></p>
         <div>
-            <h3>{props.order.supplier.name}</h3>
-            <p>Order Date: {props.order.orderDate}</p>
-            <p>Received: {received.toUpperCase()}</p>
-            <button onClick={() =>props.history.push(`/orders/${props.order.id}/details`)}>Order Details</button>
+    <Popup content='Mark order received' trigger={<Icon link name='checkmark' style={{display:  toDisplay ? '' : 'none'}} onClick={() => markOrderReceived(props.order)} />}/>  
         </div>
+        <Modal trigger={<Button onClick={() => props.getOrderItemNames(props.order.id)}>Order Details</Button>}>
+        <Modal.Header>Select a Photo</Modal.Header>
+        <Modal.Content>
+            <Modal.Description>
+            <Header>Items Ordered</Header>
+            <div>
+            {props.orderItems.map(orderItem => <p key={orderItem.id}>{orderItem.item.name}</p>)}
+            </div>
+            </Modal.Description>
+        </Modal.Content>
+        </Modal>
+        </Card>
+        </>
     )
 }
 
 export default OrderCard;
+
+
+// onClick={() => props.getOrderItemNames(props.order.id)}

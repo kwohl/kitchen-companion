@@ -19,7 +19,7 @@ const ApplicationViews = (props) => {
     const setAdminUser = props.setAdminUser;
     const hasUser = props.hasUser;
     const isAdmin = props.isAdmin;
-    
+       
     return (
         <>
         <Route path="/home" render={props => {

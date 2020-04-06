@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import EmployeeManager from '../../modules/EmployeeManager'
+import { Button, Card, Popup, Icon } from 'semantic-ui-react'
 
 const EmployeeCard = props => {
     const [toDisplay, setToDisplay] = useState(true)
@@ -27,12 +28,16 @@ const EmployeeCard = props => {
     }, []);
     
     return (
-        <div>
-            <h3>{props.employee.firstName} {props.employee.lastName} <span style={{display:  toDisplay ? 'none' : ''}}>*</span></h3>
+        <>
+            <Card>
+            <h3>{props.employee.firstName} {props.employee.lastName} <Icon name='chess queen' style={{display:  toDisplay ? 'none' : ''}} /></h3>
             <p>Email: {props.employee.email}</p>
-            <button id="deleteEmployee" onClick={() => props.deleteEmployee(props.employee.id)}>Remove Employee</button>
-            <button id="makeAdmin" style={{display:  toDisplay ? '' : 'none'}} onClick={() => makeAdmin(props.employee)}>Make Admin</button>
-        </div>
+            <div>
+            <Popup content='Remove Employee' trigger={<Button icon='trash alternate outline' onClick={() => props.deleteEmployee(props.employee.id)} />} />
+            <Popup content='Make Admin' trigger={<Button icon='chess queen' style={{display:  toDisplay ? '' : 'none'}} onClick={() => makeAdmin(props.employee)}/>} />
+            </div>
+            </Card>
+        </>
     )
 }
 

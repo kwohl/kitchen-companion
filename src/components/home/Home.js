@@ -1,6 +1,9 @@
 import React, { useState, useEffect } from 'react'
 import './Home.css'
 import HomeManager from '../../modules/HomeManager'
+import { Button, Form, Dropdown, Icon } from 'semantic-ui-react'
+
+
 
 const Home = (props) => {
    const [listItem, setListItem] = useState({ listId: "", itemId: "", userId: "", status: "", dateAdded: "" });
@@ -10,8 +13,10 @@ const Home = (props) => {
 
 const handleFieldChange = evt => {
     const stateToChange = { ...listItem };
+    console.log(evt.target.value)
     if (evt.target.id === "itemId") {
             stateToChange[evt.target.id] = parseInt(evt.target.value)
+            console.log(evt.target.value)
     } else {
     stateToChange[evt.target.id] = evt.target.value
     };
@@ -43,6 +48,8 @@ const constructNewListItem = evt => {
                 window.alert("That item is already on the list!")
                 setIsLoading(false)
             } else if (listItem.itemId === "-" || listItem.status === "-" || listItem.itemId === "" || listItem.status === "") {
+                console.log(listItem.itemId)
+                console.log(listItem.status)
                 window.alert("Please select a valid option for both fields.")
                 setIsLoading(false)
             } else {
@@ -54,21 +61,33 @@ const constructNewListItem = evt => {
         })
 }
 
+
+
+const itemOptions = items.map(item => {
+    return {key: item.id, value: parseInt(item.id), text: item.name}
+})
+
+
 useEffect(() => {
     getItems()
 }, []);
 
-//TODO: change item name drowpdown to a search bar that you can type in
+
+
+
+
 //TODO: add function to clear form after adding an item
 //TODO: something to let user know what they just added
 //TODO: if an item is already on the list but the status has changed from low to out, update list item
 
     return (
-        <div>
-            <h1>Add an Item to the List</h1>
-            <form>
-                <fieldset>
-                    <div className="addListItemInputFields">
+        <>
+        <div className="center">
+            <Icon id="addItemIcon" name='add circle' size='massive' />
+        </div>
+        <div className="center">
+            <Form>
+                <Form.Group>
                         <select 
                         required 
                         onChange={handleFieldChange} 
@@ -78,6 +97,7 @@ useEffect(() => {
                             <option value="-">-</option>
                             {items.map(item => <option key={item.id} item={item} value={parseInt(item.id)}>{item.name}</option>)}
                         </select>
+                        
                         <select 
                         
                         required 
@@ -87,16 +107,18 @@ useEffect(() => {
                             <option value="low">Low</option>
                             <option value="out">Out</option>
                         </select>
-                    </div>
-                    <div className="addListItemButton">
-                        <button disabled={isLoading} onClick={constructNewListItem}>
+                   
+                    </Form.Group>
+                    <div className="center">
+                        <Button disabled={isLoading} onClick={constructNewListItem}>
                             Add
-                        </button>
+                        </Button>
                     </div>
-                </fieldset>
-            </form>
+            </Form>
 
         </div>
+     
+        </>
     )
 }
 

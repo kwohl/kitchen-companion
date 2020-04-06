@@ -7,6 +7,20 @@ import './Orders.css'
 //TODO: different sections for orders that have been received (past orders) and orders that have been placed but are still pending
 const Orders = (props) => {
     const [orders, setOrders] = useState([]);
+    const [orderItems, setOrderItems] = useState([]);
+    const [orderObject, setOrderObject] = useState({});
+
+
+    // const markOrderReceived = (order) => {
+    //     const updatedOrderItem = {
+    //         id: order.id,
+    //         supplierId: order.supplierId,
+    //         isReceived: true,
+    //         orderDate: order.orderDate
+    //     }
+    //     OrderManager.updateOrder(updatedOrderItem) 
+    //     setToDisplay(false)       
+    // }
     
 
     const getOrders = () => {
@@ -15,22 +29,58 @@ const Orders = (props) => {
         });
     };
 
+    const getOrderItemNames = (orderId) => {
+        return OrderManager.getOrderItemsWithNames()
+            .then(result => {
+                const thisOrder = result.filter(orderItem => orderItem.orderId === orderId)
+                setOrderItems(thisOrder)
+                const orderObject = thisOrder[0].order
+                setOrderObject(orderObject)
+                
+            })
+    }
+    // const getOrderItems = () => {
+    //     return OrderManager.getOrderItemsWithNames()
+    //     .then(result => {
+    //        const thisOrder = result.filter(orderItem => orderItem.orderId === props.order.id)
+    //        setOrderItems(thisOrder)
+    //        console.log(thisOrder[0])
+    //        console.log(thisOrder)
+    //     //    const orderObject = thisOrder[0].order
+    //     //    setOrderObject(orderObject)
+
+    //     //    if (orderObject.isReceived === true) {
+    //     //     setToDisplay(false)
+    //     // }
+    //     });
+    // }
+
 
     useEffect(() => {
-        getOrders()
+        getOrders();
+
     }, []);
 
     return (
         <>
+        <div className="center">
         <h1>Orders</h1>
+        </div>
+        <div className="center">
         <div className="flexOrders">
             {orders.map(order =>
+            
                 <OrderCard
                     key={order.id}
                     order={order}
+                    orderItems={orderItems}
+                    orderObject={orderObject}
+                    getOrderItemNames={getOrderItemNames}
                     { ...props }
                 />
+                
                 )}
+        </div>
         </div>
         </>
     );

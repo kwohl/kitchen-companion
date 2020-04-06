@@ -1,6 +1,7 @@
 import React, { useState } from "react"
 import { Link } from "react-router-dom"
 import RegisterManager from "../../modules/RegisterManager"
+import { Button, Form } from 'semantic-ui-react'
 
 
 const Register = (props) => {
@@ -56,7 +57,7 @@ const Register = (props) => {
     return (
         <>
        <div>
-        <form onSubmit={handleRegister}>
+        <Form onSubmit={handleRegister}>
             <fieldset>
                 <h2>Register</h2>
                 <div>
@@ -69,9 +70,9 @@ const Register = (props) => {
                     <input onChange={handleFieldChange} type="text" id="lastName" 
                     placeholder="Last Name" required="" />
                 </div>
-                <button type="submit" disabled={isLoading} >Register</button>
+                <Button type="submit" disabled={isLoading} >Register</Button>
             </fieldset>
-        </form>
+        </Form>
         </div>
         <Link to="/login">Already have an account? Log in here.</Link>
        </>

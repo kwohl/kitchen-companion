@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import ListItemCard from './ListItemCard'
 import ListManager from '../../modules/ListManager'
+import { Button } from 'semantic-ui-react'
 
 const List = (props) => {
     const [listItems, setListItems] = useState([]);
@@ -63,7 +64,10 @@ const List = (props) => {
 
     return (
         <>
+        <div className="center">
         <h1>Grocery List</h1>
+        </div>
+        <div className="center">
         <div>
             {listItems.map(listItem =>
                 <ListItemCard
@@ -74,7 +78,10 @@ const List = (props) => {
                 />
                 )}
         </div>
-        <button onClick={createNewOrderItems}>Generate Orders</button>
+        </div>
+        <div className="center">
+        <Button onClick={createNewOrderItems}>Generate Orders</Button>
+        </div>
         </>
     );
 }
