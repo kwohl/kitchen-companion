@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import './Home.css'
 import HomeManager from '../../modules/HomeManager'
-import { Button, Form, Dropdown, Icon } from 'semantic-ui-react'
+import { Button, Form, Dropdown, Icon, Message } from 'semantic-ui-react'
 
 
 
@@ -9,6 +9,9 @@ const Home = (props) => {
    const [listItem, setListItem] = useState({ listId: "", itemId: "", userId: "", status: "", dateAdded: "" });
    const [isLoading, setIsLoading] = useState(false); 
    const [items, setItems] = useState([]);
+   const [success, setSuccess] = useState(false);
+   const [error, setError] = useState(false);
+   const [warning, setWarning] = useState(false);
    
 
 const handleFieldChange = evt => {
@@ -45,18 +48,23 @@ const constructNewListItem = evt => {
             const existingListItem = response.find(item => item.itemId === listItem.itemId)
             
             if (existingListItem !== undefined) {
-                window.alert("That item is already on the list!")
-                setIsLoading(false)
+                setWarning(true);
+                setSuccess(false);
+                setError(false);
+                setIsLoading(false);
             } else if (listItem.itemId === "-" || listItem.status === "-" || listItem.itemId === "" || listItem.status === "") {
-                console.log(listItem.itemId)
-                console.log(listItem.status)
-                window.alert("Please select a valid option for both fields.")
-                setIsLoading(false)
+                setError(true);
+                setWarning(false);
+                setSuccess(false);
+                setIsLoading(false);
             } else {
                 HomeManager.post(listItem)
                 .then(() => setIsLoading(false))
-                .then(() => window.alert(`Success!`))
+                .then(() => setSuccess(true))
+                .then(() => setWarning(false))
+                .then(() => setError(false))
                 .then(() => props.history.push("/home"));
+                
             }
         })
 }
@@ -86,9 +94,25 @@ useEffect(() => {
             <Icon id="addItemIcon" name='add circle' size='massive' />
         </div>
         <div className="center">
-            <Form>
+            <Form success={success} error={error} warning={warning}>
+            <Message
+            success
+            header='Item Submitted'
+            content="You have added an item!"
+            />
+            <Message
+            warning
+            header='Oops!'
+            content="That item is already on the list!"
+            />
+            <Message
+            error
+            header='Oops!'
+            content="Please fill out all fields!"
+            />
+                <h2>Add an Item to the List</h2>
                 <Form.Group>
-                        <select 
+                        <select className="listInputField" 
                         required 
                         onChange={handleFieldChange} 
                         id="itemId"
@@ -98,19 +122,19 @@ useEffect(() => {
                             {items.map(item => <option key={item.id} item={item} value={parseInt(item.id)}>{item.name}</option>)}
                         </select>
                         
-                        <select 
+                        <select className="listInputField"
                         
                         required 
                         onChange={handleFieldChange} 
                         id="status">
                             <option value="-">-</option>
-                            <option value="low">Low</option>
-                            <option value="out">Out</option>
+                            <option value="low">low</option>
+                            <option value="out">out</option>
                         </select>
                    
                     </Form.Group>
                     <div className="center">
-                        <Button disabled={isLoading} onClick={constructNewListItem}>
+                        <Button id="addItemButton" disabled={isLoading} onClick={constructNewListItem}>
                             Add
                         </Button>
                     </div>

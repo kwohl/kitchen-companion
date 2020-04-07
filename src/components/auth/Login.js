@@ -1,5 +1,6 @@
 import React, { useState } from "react"
 import LoginManager from "../../modules/LoginManager"
+import { Link } from "react-router-dom"
 import { Button, Form } from 'semantic-ui-react'
 
 const Login = (props) => {
@@ -32,6 +33,7 @@ const Login = (props) => {
     };
 
     return (
+        <div className="bodyMargins">
         <Form>
              <fieldset>
                  <h2>Sign In</h2>
@@ -42,9 +44,11 @@ const Login = (props) => {
                      <input onChange={handleFieldChange} type="text" id="email" 
                      placeholder="Email Address" />
                  </div>
-                 <Button type="submit" onClick={handleLogin}>Log In</Button>
+                 <Button className="outsideSubmitButton" type="submit" onClick={handleLogin}>Log In</Button>
              </fieldset>
          </Form>
+         <Link to="/register">Don't have an account? Register here.</Link>
+         </div>
     );
 }
 

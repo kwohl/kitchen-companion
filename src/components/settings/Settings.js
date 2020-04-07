@@ -16,8 +16,10 @@ const Settings = (props) => {
         
 return (
 <>
+<div className="bodyMargins">
 <p>Hello, {user.firstName}!</p>
 <p>Your username is <strong>{user.username}</strong>. You will use this to log in, so please don't forget!</p>
+</div>
 </>
     );
 }

@@ -34,8 +34,8 @@ const Suppliers = (props) => {
 
     return (
         <>
-        <div className="center">
-        <h1>Suppliers <Popup content='Add New Supplier' trigger={<Icon name='add circle' link onClick={() => props.history.push("/suppliers/new")} />}/></h1>
+        <div className="center botMargin">
+        <h1>Suppliers <Icon id="addSupplierIcon" name='add circle' link onClick={() => props.history.push("/suppliers/new")} /></h1>
         </div>
         <div className="center">
         <div>

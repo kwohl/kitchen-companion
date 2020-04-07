@@ -37,6 +37,7 @@ const SupplierEdit = (props) => {
 
     return (
         <>
+        <div className="bodyMargins">
         <Form>
             <fieldset>
                 <div>
@@ -70,11 +71,13 @@ const SupplierEdit = (props) => {
                     
                 </div>
                 <Button
+                className="outsideSubmitButton"
                 disabled={isLoading}
                 onClick={updateSupplier}
                 >Submit</Button>
             </fieldset>
         </Form>
+        </div>
         </>
     );
 }

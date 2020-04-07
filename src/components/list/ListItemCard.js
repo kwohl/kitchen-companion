@@ -7,7 +7,7 @@ const ListItemCard = props => {
 
     return (
         <div className="listItemCard">
-            <h3>{allCaps(props.listItem.item.name)} <Popup content='Delete Item' trigger={<Icon name='trash alternate' size='small' link id="deleteListItem" onClick={() => props.deleteListItem(props.listItem.id)} />} /></h3>
+            <h3>{allCaps(props.listItem.item.name)} <Popup content='Delete Item' trigger={<Icon id="trash" name='trash alternate outline' size='small' link onClick={() => props.deleteListItem(props.listItem.id)} />} /></h3>
             <p>Current Inventory: {inventory}</p>
             <p>Added by: {props.listItem.user.firstName} on {props.listItem.dateAdded}</p>
         </div>

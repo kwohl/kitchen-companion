@@ -64,11 +64,11 @@ const List = (props) => {
 
     return (
         <>
-        <div className="center">
+        <div className="center botMargin">
         <h1>Grocery List</h1>
         </div>
-        <div className="center">
-        <div>
+        <div className="center bodyMargins">
+        <div className="flexList">
             {listItems.map(listItem =>
                 <ListItemCard
                     key={listItem.id}
@@ -80,7 +80,7 @@ const List = (props) => {
         </div>
         </div>
         <div className="center">
-        <Button onClick={createNewOrderItems}>Generate Orders</Button>
+        <Button id="generateOrdersButton" onClick={createNewOrderItems}>Generate Orders</Button>
         </div>
         </>
     );

@@ -56,6 +56,7 @@ const Register = (props) => {
 
     return (
         <>
+        <div className="bodyMargins">
        <div>
         <Form onSubmit={handleRegister}>
             <fieldset>
@@ -70,11 +71,14 @@ const Register = (props) => {
                     <input onChange={handleFieldChange} type="text" id="lastName" 
                     placeholder="Last Name" required="" />
                 </div>
-                <Button type="submit" disabled={isLoading} >Register</Button>
+                <div className="buttonPlacement">
+                <Button className="outsideSubmitButton" type="submit" disabled={isLoading} >Register</Button>
+                </div>
             </fieldset>
         </Form>
         </div>
         <Link to="/login">Already have an account? Log in here.</Link>
+        </div>
        </>
     )
 };
