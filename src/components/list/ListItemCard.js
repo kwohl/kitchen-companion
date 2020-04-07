@@ -1,13 +1,15 @@
 import React from 'react';
-import { Button } from 'semantic-ui-react'
+import { Button, Icon, Popup } from 'semantic-ui-react'
+import { allCaps } from '../../modules/Helpers'
 
 const ListItemCard = props => {
+    const inventory = allCaps(props.listItem.status)
+
     return (
-        <div>
-            <h3>{props.listItem.item.name}</h3>
-            <p>Current Inventory: {props.listItem.status}</p>
+        <div className="listItemCard">
+            <h3>{allCaps(props.listItem.item.name)} <Popup content='Delete Item' trigger={<Icon name='trash alternate' size='small' link id="deleteListItem" onClick={() => props.deleteListItem(props.listItem.id)} />} /></h3>
+            <p>Current Inventory: {inventory}</p>
             <p>Added by: {props.listItem.user.firstName} on {props.listItem.dateAdded}</p>
-            <Button id="deleteListItem" onClick={() => props.deleteListItem(props.listItem.id)}>Delete</Button>
         </div>
     )
 }

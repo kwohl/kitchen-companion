@@ -23,15 +23,16 @@ const NavBar = props => {
     size='big'
     />
     <Sidebar
+    id="navBar"
     as={Menu}
+    width='wide'
     animation='overlay'
     icon='labeled'
     vertical
     visible={visible}
     onHide={() => setVisible(false)}
     >
-    <Menu vertical secondary>
-    <nav>
+    <Menu vertical fluid secondary>
         
         {props.hasUser
           ? <Link 
@@ -102,7 +103,7 @@ const NavBar = props => {
             </Menu.Item>
             </Link>
           : null}
-      </nav>
+  
       </Menu>
       </Sidebar>
       </>

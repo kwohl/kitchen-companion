@@ -30,7 +30,7 @@ const EmployeeCard = props => {
     return (
         <>
             <Card>
-            <h3>{props.employee.firstName} {props.employee.lastName} <Icon name='chess queen' style={{display:  toDisplay ? 'none' : ''}} /></h3>
+            <h3>{props.employee.firstName} {props.employee.lastName} <sup><Icon size='small' name='chess queen' style={{display:  toDisplay ? 'none' : ''}} /></sup></h3>
             <p>Email: {props.employee.email}</p>
             <div>
             <Popup content='Remove Employee' trigger={<Button icon='trash alternate outline' onClick={() => props.deleteEmployee(props.employee.id)} />} />

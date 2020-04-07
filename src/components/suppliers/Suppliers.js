@@ -1,7 +1,7 @@
 import React, { useState, useEffect } from 'react'
 import SupplierManager from '../../modules/SupplierManager'
 import SupplierCard from './SupplierCard'
-import { Button, Header, Image, Modal } from 'semantic-ui-react'
+import { Button, Header, Image, Modal, Popup, Icon } from 'semantic-ui-react'
 
 const Suppliers = (props) => {
     const [suppliers, setSuppliers] = useState([]);
@@ -34,7 +34,10 @@ const Suppliers = (props) => {
 
     return (
         <>
-        <h1>Suppliers</h1>
+        <div className="center">
+        <h1>Suppliers <Popup content='Add New Supplier' trigger={<Icon name='add circle' link onClick={() => props.history.push("/suppliers/new")} />}/></h1>
+        </div>
+        <div className="center">
         <div>
             {suppliers.map(supplier =>
                 <SupplierCard
@@ -47,8 +50,6 @@ const Suppliers = (props) => {
                 />
                 )}
         </div>
-        <div>
-            <Button onClick={() => props.history.push("/suppliers/new")}>Add New Supplier</Button>
         </div>
         </>
     );
