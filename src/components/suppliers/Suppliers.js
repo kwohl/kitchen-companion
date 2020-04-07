@@ -21,11 +21,11 @@ const Suppliers = (props) => {
     };
 
     const deleteSupplier = (supplierId) => {
-        const confirm = window.confirm("Are you sure you would like to delete this supplier and all associated items?")
-        if (confirm === true) {
+        // const confirm = window.confirm("Are you sure you would like to delete this supplier and all associated items?")
+        // if (confirm === true) {
             SupplierManager.deleteSupplier(supplierId)
             .then(() => getSuppliers())
-        }
+        
     }
 
     useEffect(() => {

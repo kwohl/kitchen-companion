@@ -30,8 +30,8 @@ const List = (props) => {
       console.log(orders)
 
     const createNewOrderItems = () => {
-        const confirm = window.confirm(`You are about to generate ${Object.entries(orders).length} new orders. Would you like to procede?`)
-        if (confirm === true) {
+        // const confirm = window.confirm(`You are about to generate ${Object.entries(orders).length} new orders. Would you like to procede?`)
+        // if (confirm === true) {
           Object.entries(orders)
         .forEach(orderPair => {
           return fetch("http://localhost:5002/orders", {
@@ -50,11 +50,11 @@ const List = (props) => {
                     "Content-Type": "application/json"
                   },
                   body: JSON.stringify({ orderId: order.id, itemId: item.itemId })
-                }).then(() => deleteListItem(item.id))
+                }).then(() => deleteListItem(item.id)).then(() => props.history.push("/orders"))
               }
             })
         })
-        }
+        // }
     }
 
 
