@@ -24,6 +24,9 @@ const handleFieldChange = evt => {
     stateToChange[evt.target.id] = evt.target.value
     };
     setListItem(stateToChange);
+    setWarning(false);
+    setSuccess(false);
+    setError(false);
 };
 
 const getItems = () => {
@@ -52,7 +55,7 @@ const constructNewListItem = evt => {
                 setSuccess(false);
                 setError(false);
                 setIsLoading(false);
-            } else if (listItem.itemId === "-" || listItem.status === "-" || listItem.itemId === "" || listItem.status === "") {
+            } else if (listItem.itemId === "-" || listItem.status === "-" || listItem.itemId === "" || listItem.status === "" || listItem.itemId === null) {
                 setError(true);
                 setWarning(false);
                 setSuccess(false);
@@ -118,7 +121,7 @@ useEffect(() => {
                         id="itemId"
                         placeholder="Item"
                         >   
-                            <option value="-">-</option>
+                            <option value="-">Select an Item</option>
                             {items.map(item => <option key={item.id} item={item} value={parseInt(item.id)}>{item.name}</option>)}
                         </select>
                         
@@ -127,7 +130,7 @@ useEffect(() => {
                         required 
                         onChange={handleFieldChange} 
                         id="status">
-                            <option value="-">-</option>
+                            <option value="-">Select a Status</option>
                             <option value="low">low</option>
                             <option value="out">out</option>
                         </select>

@@ -19,12 +19,12 @@ const Register = (props) => {
         evt.preventDefault()
 
         if (credentials.email === "" || credentials.firstName === "" || credentials.lastName === "") {
-            window.alert("Please fill out all fields.")
+            // window.alert("Please fill out all fields.")
         } else {
             // checks if email that user entered in field (credentials) matches email in the DB
             RegisterManager.getAll().then(users => {
                 if (users.find(user => user.email === credentials.email)) {
-                    window.alert("This email already exists.")
+                    // window.alert("This email already exists.")
                 } else {
                 const newUser = {
                     username: credentials.firstName.charAt(0).toLowerCase() + credentials.lastName.toLowerCase(),
@@ -45,7 +45,7 @@ const Register = (props) => {
                         //     "activeUserId", 
                         //     JSON.stringify(activeUser.id)
                         // )
-                        window.alert("Welcome! Your username is " + activeUser.username + ".")
+                        // window.alert("Welcome! Your username is " + activeUser.username + ".")
                         props.history.push("/home")
                     })
                 })
