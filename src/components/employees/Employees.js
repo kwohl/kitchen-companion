@@ -25,7 +25,7 @@ const Employees = (props) => {
 
     return (
         <>
-        <div className="center">
+        <div className="center botMargin">
         <h1>Employees</h1>
         </div>
         <div className="center">

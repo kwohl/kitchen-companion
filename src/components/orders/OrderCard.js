@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Button, Card, Modal, Header, Icon, Popup } from 'semantic-ui-react'
+import { Button, Card, Modal, Header, Icon } from 'semantic-ui-react'
 import OrderManager from '../../modules/OrderManager'
 
 const OrderCard = props => {
@@ -37,18 +37,21 @@ const OrderCard = props => {
 
     return (
         <>
-        <Card>
-        <h3>{props.order.supplier.name}</h3>
+        <Card raised className="orderCard">
+        <Card.Content>
+        <Card.Header>{props.order.supplier.name}</Card.Header>
+        <Card.Description>
         <p>Order Date: {props.order.orderDate}</p>
         <p>Received: <Icon name='checkmark' style={{display:  toDisplay ? 'none' : ''}} /> <Icon name='cancel' style={{display:  toDisplay ? '' : 'none'}} /></p>
-        <div>
-    <Popup content='Mark order received' trigger={<Icon link name='checkmark' style={{display:  toDisplay ? '' : 'none'}} onClick={() => markOrderReceived(props.order)} />}/>  
-        </div>
-        <Modal trigger={<Button onClick={() => props.getOrderItemNames(props.order.id)}>Order Details</Button>}>
-        <Modal.Header>Select a Photo</Modal.Header>
+        <Card.Content textAlign='right'>
+        <Button inverted id="markOrderReceivedButton" style={{display:  toDisplay ? '' : 'none'}} onClick={() => markOrderReceived(props.order)} >Mark Received</Button>  
+        </Card.Content>
+        </Card.Description>
+        </Card.Content>
+        <Modal trigger={<Button id="orderDetailsButton" onClick={() => props.getOrderItemNames(props.order.id)}>Order Details</Button>}>
+        <Modal.Header>Items Ordered</Modal.Header>
         <Modal.Content>
             <Modal.Description>
-            <Header>Items Ordered</Header>
             <div>
             {props.orderItems.map(orderItem => <p key={orderItem.id}>{orderItem.item.name}</p>)}
             </div>

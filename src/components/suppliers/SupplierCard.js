@@ -6,11 +6,11 @@ const SupplierCard = props => {
 //TODO: on Remove supplier - 'are you sure you would like to remove this supplier and all associated items?' (or 'would you like to reassign items to another supplier?')
 //TODO: edit supplier - edit info and edit/add/delete items
 return (
-        <div>
+        <div className="listItemCard">
             <h3>{props.supplier.name}</h3>
             <p>Contact: {props.supplier.contact}</p>
             <p>Email: {props.supplier.email}</p>
-            <Modal trigger={<Button onClick={() => props.getOrdersWithSupplier(props.supplier.id)}>View Orders</Button>}>
+            <Modal trigger={<Button inverted className="orangeButton" onClick={() => props.getOrdersWithSupplier(props.supplier.id)}>View Orders</Button>}>
             <Modal.Header>{props.supplier.name}</Modal.Header>
             <Modal.Content>
             <Modal.Description>
@@ -21,9 +21,9 @@ return (
             </Modal.Description>
             </Modal.Content>
             </Modal>
-            <Button onClick={() => props.history.push(`/suppliers/${props.supplier.id}/edit`)} id="editSupplier" >Edit Supplier</Button>
-            <Button onClick={() => props.history.push(`/suppliers/${props.supplier.id}/items`)} id="addItems" >Manage Items</Button>
-            <Button id="deleteSupplier" onClick={() => props.deleteSupplier(props.supplier.id)}>Remove Supplier</Button>
+            <Button inverted className="orangeButton" onClick={() => props.history.push(`/suppliers/${props.supplier.id}/items`)} id="addItems" >Manage Items</Button>
+            <Button inverted className="orangeButton" icon='edit' onClick={() => props.history.push(`/suppliers/${props.supplier.id}/edit`)} id="editSupplier" />
+            <Button inverted className="orangeButton" icon='trash alternate outline' id="deleteSupplier" onClick={() => props.deleteSupplier(props.supplier.id)} />
         </div>
     )
 }

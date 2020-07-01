@@ -42,6 +42,7 @@ const SupplierItemForm = props => {
   
     return (
       <>
+      <div className="bodyMargins">
         <Form>
           <fieldset>
             <div>
@@ -55,16 +56,20 @@ const SupplierItemForm = props => {
             </div>
             <div>
               <Button
+                className="outsideSubmitButton"
                 disabled={isLoading}
                 onClick={createNewItem}
               >Add Item</Button>
             </div>
           </fieldset>
         </Form>
-        <div>
+        <div className="topMargin">
             <h3>{supplier.name}</h3>
             <h4>Current Items</h4>
+            
             {items.map(item => <p key={item.id}>{item.name}</p>)}
+            
+        </div>
         </div>
       </>
     );

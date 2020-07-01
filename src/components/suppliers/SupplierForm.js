@@ -25,7 +25,7 @@ const SupplierForm = props => {
   
     return (
       <>
-        
+        <div className="bodyMargins">
         <Form>
           <fieldset>
             <div>
@@ -53,6 +53,7 @@ const SupplierForm = props => {
             </div>
             <div>
               <Button
+                className="outsideSubmitButton"
                 type="button"
                 disabled={isLoading}
                 onClick={createNewSupplier}
@@ -60,6 +61,7 @@ const SupplierForm = props => {
             </div>
           </fieldset>
         </Form>
+        </div>
       </>
     );
   };
