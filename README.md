@@ -9,18 +9,10 @@ Kitchen Companion is an application to assist a restaurant kitchen with inventor
     * [Entity Relationship Diagram](#entity-relationship-diagram)
 
 ## Features List
-
-### Create, Update, and Delete Tasks
-
-### Create, Update, and Delete Steps
-
-### Connect Steps to Multiple Tasks
-
-### Mark Tasks and Steps Complete
-
-### Easily View Progress
-  
-### Update Color Settings
+ * Users can add items to a main grocery list
+ * Admin users can compile the grocery list into orders, which contain filtered lists of items from the main grocery list sorted by supplier
+ * Admin users can manage suppliers by editing name and contact info and adding new orderable items to the supplier's item bank
+ * Admin users can assign or remove admin priveleges for other users
 
 ## Technologies Used
     React.js
@@ -66,7 +58,7 @@ Kitchen Companion is an application to assist a restaurant kitchen with inventor
 
   Now that the server is up and running, you can open an internet browser and access the application
   ```sh
-    http://localhost:8080/
+    http://localhost:3000/
   ```
 
 ## Planning Documentation
