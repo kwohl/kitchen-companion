@@ -10,6 +10,11 @@ Kitchen Companion is an application to assist a restaurant kitchen with inventor
 
 ## Features List
 
+ * Users can add items to a main grocery list
+ * Admin users can compile the grocery list into orders, which contain filtered lists of items from the main grocery list sorted by supplier
+ * Admin users can manage suppliers by editing name and contact info and adding new orderable items to the supplier's item bank
+ * Admin users can assign or remove admin priveleges for other users
+ 
 ### Add Item to List
 ![Add Item](public\images\tempsnip.png)
 
