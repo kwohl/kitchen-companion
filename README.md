@@ -16,13 +16,13 @@ Kitchen Companion is an application to assist a restaurant kitchen with inventor
  * Admin users can assign or remove admin priveleges for other users
 
 ### Add Item to List
-![Add Item](public\images\tempsnip.png)
+![Add Item](./src/images/tempsnip.png)
 
 ### View Grocery List
-![List View](public\images\grocerylist.JPG)
+![List View](./src/images/grocerylist.JPG)
 
 ### Manage Employees
-![Manage Employees](public\images\employees.JPG)
+![Manage Employees](./src/images/employees.JPG)
 
 ### Manage Orders
 
@@ -78,7 +78,7 @@ Kitchen Companion is an application to assist a restaurant kitchen with inventor
 ## Planning Documentation
 
 ### Entity Relationship Diagram
-![ERD](public\images\KitchenCompanionERD.png)
+![ERD](./src/images/KitchenCompanionERD.png)
 
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
