@@ -22,7 +22,7 @@ Kitchen Companion is an application to assist a restaurant kitchen with inventor
 ![List View](src\images\grocerylist.JPG)
 
 ### Manage Employees
-![Manage Employees](src\images\employees.JPG)
+![Manage Employees](.\employees.JPG)
 
 ### Manage Orders
 
