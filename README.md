@@ -14,7 +14,7 @@ Kitchen Companion is an application to assist a restaurant kitchen with inventor
  * Admin users can compile the grocery list into orders, which contain filtered lists of items from the main grocery list sorted by supplier
  * Admin users can manage suppliers by editing name and contact info and adding new orderable items to the supplier's item bank
  * Admin users can assign or remove admin priveleges for other users
- 
+
 ### Add Item to List
 ![Add Item](public\images\tempsnip.png)
 
@@ -78,7 +78,7 @@ Kitchen Companion is an application to assist a restaurant kitchen with inventor
 ## Planning Documentation
 
 ### Entity Relationship Diagram
-![ERD](./KitchenCompanionERD.png)
+![ERD](public\images\KitchenCompanionERD.png)
 
 
 This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app).
